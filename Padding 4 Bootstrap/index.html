@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamen Rider My-Th - DX Edition</title>
+    <!-- 1. Integrasi CSS Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Opsional: Bootstrap Icons untuk mempercantik bagian fitur -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+    <!-- 2. Navbar Responsif dengan Hamburger Menu -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">My-Th</a>
+            <!-- Tombol Hamburger saat di layar kecil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Menu Navigasi -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Keunggulan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#kontak">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3. Hero Section (Judul, Deskripsi Singkat, Tombol CTA) -->
+    <header id="hero" class="bg-light py-5 border-bottom">
+    <div class="container py-4">
+        <div class="row align-items-center g-5">
+            <!-- Kolom Kiri: Teks & Tombol -->
+            <div class="col-12 col-lg-6 text-center text-lg-start">
+                <h1 class="display-4 fw-bold text-dark mb-3">Berubahlah jadi Rider membasmi Fukashigi</h1>
+                <p class="lead text-secondary mb-4">
+                    Ukuran belt sudah sesuai dengan ukuran tubuh anak-anak
+                </p>
+                <a href="#features" class="btn btn-primary btn-lg px-4">Dapatkan Sekarang</a>
+            </div>
+            
+            <!-- Kolom Kanan: Gambar Produk -->
+            <div class="col-12 col-lg-6 text-center">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgjiySHr7ijJ5e77km-yGm0P4YKmjMO4_h4PNZcmamyQ&s=10" 
+                     alt="My-Th Driver DX" 
+                     class="img-fluid rounded-4 shadow">
+            </div>
+        </div>
+    </div>
+</header>
+
+    <!-- 4. Features Section (3 Keunggulan dengan Grid System) -->
+    <section id="features" class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Mengapa Harus My-Th! Driver DX?</h2>
+                <p class="text-muted">Gimmick item yang berbentuk telur sangat unik!</p>
+            </div>
+
+            <!-- Grid Bootstrap: Sejajar horizontal di desktop (col-md-4) dan vertikal di mobile (col-12) -->
+            <div class="row g-4">
+                <!-- Fitur 1 -->
+                <div class="col-12 col-md-4">
+                    <div class="card h-100 text-center p-4 shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                            <i class="bi bi-award text-primary fs-1 mb-3"></i>
+                            <h5 class="card-title fw-bold">Ukuran 48-68 cm pinggang anak-anak</h5>
+                            <p class="card-text text-muted">
+                                Berkualitas tinggi asli dari Jepang!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fitur 2 -->
+                <div class="col-12 col-md-4">
+                    <div class="card h-100 text-center p-4 shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                            <i class="bi bi-fire text-primary fs-1 mb-3"></i>
+                            <h5 class="card-title fw-bold">High Quality Belt</h5>
+                            <p class="card-text text-muted">
+                                Terbuat dari plastik ABS (Acrylonitrile Butadiene Styrene) yang keras dan kokoh!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fitur 3 -->
+                <div class="col-12 col-md-4">
+                    <div class="card h-100 text-center p-4 shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                            <i class="bi bi-truck text-primary fs-1 mb-3"></i>
+                            <h5 class="card-title fw-bold">Pengiriman Cepat & Aman</h5>
+                            <p class="card-text text-muted">
+                                Dikemas menggunakan box dari Jepang dan bisa dipesan dari toko online terdekat!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Sederhana -->
+    <footer id="kontak" class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Bandai. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Integrasi JavaScript Bootstrap 5 (Wajib agar hamburger menu berfungsi) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

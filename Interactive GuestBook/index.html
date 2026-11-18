@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Guest Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        li strong {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Interactive Guest Book</h2>
+    
+    <!-- Form Input Nama dan Pesan -->
+    <form id="guestForm">
+        <div class="form-group">
+            <label for="namaInput">Nama:</label>
+            <input type="text" id="namaInput" required placeholder="Masukkan nama Anda">
+        </div>
+        <div class="form-group">
+            <label for="pesanInput">Pesan:</label>
+            <textarea id="pesanInput" rows="3" required placeholder="Tuliskan pesan Anda"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h3>Daftar Buku Tamu</h3>
+    <!-- Tempat menampung list secara dinamis -->
+    <ul id="guestList">
+        <!-- Data tamu akan masuk ke sini -->
+    </ul>
+
+    <script>
+        // 1. Menangkap elemen form dan list dari DOM
+        const guestForm = document.getElementById('guestForm');
+        const guestList = document.getElementById('guestList');
+
+        // 2. Menangkap event submit pada form menggunakan addEventListener
+        guestForm.addEventListener('submit', function(event) {
+            // 3. Mencegah halaman agar tidak refresh saat form dikirim
+            event.preventDefault();
+
+            // 4. Menyimpan value dari masing-masing input ke dalam variabel
+            const nama = document.getElementById('namaInput').value;
+            const pesan = document.getElementById('pesanInput').value;
+
+            // 5. Menggunakan manipulasi DOM untuk merender value ke dalam list (<li>) secara dinamis
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${nama}</strong>: <p>${pesan}</p>`;
+            
+            // Masukkan elemen <li> ke dalam <ul> (guestList)
+            guestList.appendChild(li);
+
+            // 6. Mengosongkan kembali nilai input pada form setelah data berhasil dirender
+            guestForm.reset();
+        });
+    </script>
+
+</body>
+</html>[cite: 1]
