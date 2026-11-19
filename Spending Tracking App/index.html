@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spending Tracking App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Spending Tracking App</h2>
+
+    <!-- Form untuk menambahkan pengeluaran -->
+    <form id="expenseForm">
+        <div id="errorMessage" class="error"></div>
+        <div class="form-group">
+            <label for="expenseName">Nama Pengeluaran:</label>
+            <input type="text" id="expenseName" placeholder="Contoh: Sarapan">
+        </div>
+        <div class="form-group">
+            <label for="expenseAmount">Nominal / Harga (Rp):</label>
+            <input type="number" id="expenseAmount" placeholder="Contoh: 10000">
+        </div>
+        <button type="submit">Tambah Pengeluaran</button>
+    </form>
+
+    <h3>Daftar Pengeluaran</h3>
+    <ul id="expenseList">
+        <!-- Data pengeluaran akan dirender secara dinamis di sini -->
+    </ul>
+
+    <script>
+        // Ambil elemen dari DOM
+        const expenseForm = document.getElementById('expenseForm');
+        const expenseNameInput = document.getElementById('expenseName');
+        const expenseAmountInput = document.getElementById('expenseAmount');
+        const expenseList = document.getElementById('expenseList');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Inisialisasi Array of Objects, baca dari localStorage jika ada, jika tidak kosongkan
+        let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+
+        // Function untuk merender seluruh isi Array of Objects ke layar (DOM) menggunakan looping
+        function renderExpenses() {
+            // Kosongkan list terlebih dahulu agar tidak duplikat saat dirender ulang
+            expenseList.innerHTML = '';
+
+            // Looping menggunakan forEach
+            expenses.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${item.name}</span>
+                    <span>Rp ${Number(item.amount).toLocaleString('id-ID')}</span>
+                `;
+                expenseList.appendChild(li);
+            });
+        }
+
+        // Function untuk menyimpan data ke localStorage
+        function saveToLocalStorage() {
+            localStorage.setItem('expenses', JSON.stringify(expenses));
+        }
+
+        // Event listener saat form disubmit
+        expenseForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah form reload halaman secara default
+
+            const name = expenseNameInput.value.trim();
+            const amount = expenseAmountInput.value.trim();
+
+            // Implementasi validasi kondisional (if/else): form tidak boleh ditambahkan jika ada input yang kosong
+            if (name === '' || amount === '') {
+                errorMessage.textContent = 'Peringatan: Nama pengeluaran dan nominal tidak boleh kosong!';
+            } else {
+                // Bersihkan pesan error jika validasi lolos
+                errorMessage.textContent = '';
+
+                // Simpan data pengeluaran baru ke dalam struktur data Array of Objects
+                const newExpense = {
+                    name: name,
+                    amount: amount
+                };
+
+                expenses.push(newExpense);
+
+                // Simpan Array of Objects tersebut ke dalam localStorage
+                saveToLocalStorage();
+
+                // Render ulang tampilan di layar
+                renderExpenses();
+
+                // Reset nilai input form
+                expenseNameInput.value = '';
+                expenseAmountInput.value = '';
+            }
+        });
+
+        // Saat halaman pertama kali dimuat (atau di-refresh), render data dari localStorage
+        window.onload = function() {
+            renderExpenses();
+        };
+    </script>
+</body>
+</html>
