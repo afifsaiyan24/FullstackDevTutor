@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Data Siswa (TypeScript)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Dashboard Data Siswa</h1>
+    <p class="subtitle">TypeScript Strict Typing — .map(), .filter(), .reduce()</p>
+
+    <div class="toolbar">
+      <label for="searchInput" class="sr-only">Cari nama siswa</label>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Cari berdasarkan nama siswa..."
+        autocomplete="off"
+      />
+      <span id="resultCount" class="result-count"></span>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Siswa</th>
+            <th>Kelas</th>
+            <th>Nilai (Score)</th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody"></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="avg-label">Rata-rata Nilai (Siswa Ditampilkan)</td>
+            <td id="averageScore" class="avg-value">0.00</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </main>
+
+  <script src="./dist/script.js"></script>
+</body>
+</html>
